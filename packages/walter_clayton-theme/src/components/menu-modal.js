@@ -1,6 +1,5 @@
 import { styled, connect, useConnect } from "frontity";
 import Link from "./link";
-
 /**
  * The modal containing the mobile menu items.
  *
@@ -32,7 +31,7 @@ const MenuModal = ({ ...props }) => {
 };
 
 const MenuOverlay = styled.div`
-  background-color: #1f38c5;
+  background-color: #507A95;
   width: 100vw;
   height: 100vh;
   overflow: hidden auto;
@@ -45,6 +44,7 @@ const MenuOverlay = styled.div`
 const MenuContent = styled.div`
   z-index: 3;
   position: relative;
+  color: white;
 `;
 
 const MenuLink = styled(Link)`
@@ -57,11 +57,11 @@ const MenuLink = styled(Link)`
 
   &:hover,
   &:focus {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: #F9AA8F;
   }
   /* styles for active link */
   &[aria-current="page"] {
-    color: yellow;
+    color: #F9AA8F;
     font-weight: bold;
   }
 `;

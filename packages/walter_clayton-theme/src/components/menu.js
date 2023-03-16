@@ -23,7 +23,6 @@ function MobileMenu({ state, actions }) {
           src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"
         ></script>
       </Head>
-
       <MenuToggle>
         <HamburgerIcon
           color="white"
@@ -69,6 +68,7 @@ const MenuToggle = styled.button`
   position: absolute;
   right: 24px;
   top: 24px;
+  margin-top: -10px;
   background: transparent;
   border: 0;
   color: white;
