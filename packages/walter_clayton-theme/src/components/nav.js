@@ -1,5 +1,6 @@
 import { connect, styled } from "frontity";
 import Link from "./link";
+import Logo from "./logo";
 
 /**
  * Navigation Component
@@ -8,41 +9,67 @@ import Link from "./link";
  */
 const Nav = ({ state }) => (
   <NavContainer>
-    {state.theme.menu.map(([name, link]) => {
-      // Check if the link matched the current page url
-      const data = state.source.get(state.router.link);
-      const isCurrentPage = data.route === link;
+      <LogoMobile>
+        <Logo/>
+      </LogoMobile>
+    <NavContainerDesktop>
+      <LogoDesktop>
+        <Logo/>
+      </LogoDesktop>
+      {state.theme.menu.map(([name, link]) => {
+        // Check if the link matched the current page url
+        const data = state.source.get(state.router.link);
+        const isCurrentPage = data.route === link;
 
-      return (
-        <NavItem key={name}>
-          {/* If link url is the current page, add `aria-current` for a11y */}
-          <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-            {name}
-          </Link>
-        </NavItem>
-      );
-    })}
+        return (
+          <NavItem key={name}>
+            {/* If link url is the current page, add `aria-current` for a11y */}
+            <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
+              {name}
+            </Link>
+          </NavItem>
+        );
+      })}
+    </NavContainerDesktop>
   </NavContainer>
 );
 
 export default connect(Nav);
 
+const LogoMobile = styled.nav`
+
+}
+  `;
+
+const LogoDesktop = styled.nav`
+@media screen and (min-width: 560px) {
+  display: none;
+  }
+  `;
+
 const NavContainer = styled.nav`
   list-style: none;
   display: flex;
-  width: 848px;
-  max-width: 100%;
+  height: 70px;
+  width: 100%;
   box-sizing: border-box;
-  padding: 0 24px;
   margin: 0;
   overflow-x: auto;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  `;
 
+const NavContainerDesktop = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
   @media screen and (max-width: 560px) {
     display: none;
-  }
-`;
-
-const NavItem = styled.div`
+  `;
+  
+  const NavItem = styled.div`
   padding: 0;
   margin: 0 16px;
   color: #fff;
@@ -53,11 +80,12 @@ const NavItem = styled.div`
   & > a {
     display: inline-block;
     line-height: 2em;
-    border-bottom: 2px solid;
+    border-bottom: 3px solid;
     border-bottom-color: transparent;
     /* Use for semantic approach to style the current link */
     &[aria-current="page"] {
-      border-bottom-color: #fff;
+      color: #F9AA8F;
+      font-weight: 600;
     }
   }
 
@@ -74,4 +102,6 @@ const NavItem = styled.div`
       width: 24px;
     }
   }
+  @media screen and (max-width: 560px) {
+    display: none;
 `;

@@ -3,8 +3,8 @@ const settings = {
   "state": {
     "frontity": {
       "url": "https://test.frontity.org",
-      "title": "Test Frontity Blog",
-      "description": "WordPress installation for Frontity development"
+      "title": "Walter Clayton Blog",
+      "description": "Walter Clayton's Portfolio and blogging website"
     }
   },
   "packages": [

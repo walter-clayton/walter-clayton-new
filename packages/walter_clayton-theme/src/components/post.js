@@ -32,7 +32,7 @@ const Post = ({ state, actions, libraries }) => {
   const author = state.source.author[post.author];
   // Get a human readable date.
   const date = new Date(post.date);
-console.log(post)
+
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
@@ -195,7 +195,7 @@ const Content = styled.div`
     margin: 8px 0 4px 0;
 
     &:focus {
-      outline-color: #1f38c5;
+      outline-color: #507A95;
     }
   }
 
@@ -210,13 +210,13 @@ const Content = styled.div`
     touch-action: manipulation;
     cursor: pointer;
     background-image: none;
-    border: 1px solid #1f38c5;
+    border: 1px solid #507A95;
     padding: 12px 36px;
     font-size: 14px;
     line-height: 1.42857143;
     border-radius: 4px;
     color: #fff;
-    background-color: #1f38c5;
+    background-color: #507A95;
   }
 
   /* WordPress Core Align Classes */
