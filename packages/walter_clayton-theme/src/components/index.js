@@ -6,6 +6,7 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
+import Jumbotron from "./jumbotron";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -40,12 +41,15 @@ const Theme = ({ state }) => {
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
       <Main>
-        <Switch>
-          <Loading when={data.isFetching} />
-          <List when={data.isArchive} />
-          <Post when={data.isPostType} />
-          <PageError when={data.isError} />
-        </Switch>
+        <Jumbotron />
+        <MainChild>
+          <Switch>
+            <Loading when={data.isFetching} />
+            <List when={data.isArchive} />
+            <Post when={data.isPostType} />
+            <PageError when={data.isError} />
+          </Switch>
+        </MainChild>
       </Main>
     </>
   );
@@ -58,6 +62,7 @@ const globalStyles = css`
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:  #E7E7E7;
   }
   a,
   a:visited {
@@ -75,10 +80,11 @@ const HeadContainer = styled.div`
 
 const Main = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(
-    180deg,
-    rgba(66, 174, 228, 0.1),
-    rgba(66, 174, 228, 0)
-  );
+`;
+const MainChild = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
