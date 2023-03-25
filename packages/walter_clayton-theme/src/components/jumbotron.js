@@ -264,7 +264,7 @@ const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
   const JumbotronContainer = styled.div`
     width: 90%;
     max-width: 1200px;
-    margin: 5% auto;
+    margin: 2% auto;
     display: flex;
     justify-content: space-evenly;
     border-radius: 25px; 
@@ -274,6 +274,9 @@ const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
     ${mq[2]} {
         flex-direction: column;
         text-align: center;
+        width: 100%;
+        margin: -10px 0 20px 0;
+        border-radius: 0; 
     }
 `;
   
