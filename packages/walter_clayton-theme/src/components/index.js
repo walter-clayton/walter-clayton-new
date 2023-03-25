@@ -43,12 +43,12 @@ const Theme = ({ state }) => {
       <Main>
         <Jumbotron />
         <MainChild>
-          <Switch>
-            <Loading when={data.isFetching} />
-            <List when={data.isArchive} />
-            <Post when={data.isPostType} />
-            <PageError when={data.isError} />
-          </Switch>
+            <Switch>
+              <Loading when={data.isFetching} />
+              <List when={data.isArchive} />
+              <Post when={data.isPostType} />
+              <PageError when={data.isError} />
+            </Switch>
         </MainChild>
       </Main>
     </>
@@ -56,6 +56,10 @@ const Theme = ({ state }) => {
 };
 
 export default connect(Theme);
+
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const globalStyles = css`
   body {
@@ -86,5 +90,10 @@ const Main = styled.div`
 const MainChild = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  max-width: 1200px;
+  margin: auto;
+  width: 90%;
+  ${mq[2]} {
+    width: 100%;
+  }
 `;

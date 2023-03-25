@@ -36,11 +36,22 @@ const List = ({ state }) => {
 
 export default connect(List);
 
+const breakpoints = [576, 768, 992, 1200]
+
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
+
 const Container = styled.section`
-  width: 800px;
-  margin: 0;
-  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  ${mq[2]} {
+    flex-direction: column;
+    margin: auto;
+}
 `;
 
 const Header = styled.h3`
