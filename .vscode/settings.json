@@ -8,5 +8,8 @@
         "vue",
         "markdown",
         "emotion"
-    ]
+    ],
+    "search.exclude": {
+        "**/node_modules": false
+    }
 }
