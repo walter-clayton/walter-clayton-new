@@ -19,7 +19,7 @@ const settings = {
             ],
             [
               "Portfolio",
-              "/project/"
+              "/portfolio/"
             ],
             [
               "About",
@@ -42,7 +42,8 @@ const settings = {
             {
               type: "project",
               endpoint: "project",
-              archive: "/project"
+              archive: "/portfolio",
+              post: "/project/:slug",
             }
           ],
           taxonomies: [

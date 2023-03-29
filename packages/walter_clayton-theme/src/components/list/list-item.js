@@ -2,6 +2,8 @@ import { connect, styled } from "frontity";
 import { css } from '@emotion/react'
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './styles.css'
 
 /**
  * Item Component
@@ -11,8 +13,9 @@ import FeaturedMedia from "../featured-media";
  * - Author: name of author and published date
  * - FeaturedMedia: the featured image/video of the post
  */
+
+
 const Item = ({ state, item }) => {
-  
   const categoryState = state.source.category;
   const date = new Date(item.date);
 
@@ -66,8 +69,30 @@ const Item = ({ state, item }) => {
         {item.excerpt && (
           <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
           )}
-          <Category dangerouslySetInnerHTML={{ __html: getNameById(Number(item.categories), categoryState) }}/>
+          <ReadMore>         
+            <Link link={item.link}>
+              Read More
+            </Link>
+          </ReadMore>
+          <ButtonContainer>
+            { item.github_url && (
+              <Link link={item.github_url} target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={['fab', 'github']} size="lg" css={css`color: #F9AA8F;:hover{color: #507A95;}`}>
+                </FontAwesomeIcon>
+              </Link>
+            )}
+            { item.demo_url && (
+              <Link link={item.demo_url} target="_blank" rel="noopener noreferrer">
+                <Demo>
+                  Demo
+                </Demo>
+              </Link>
+            )}
+          </ButtonContainer>
       </article>
+      { Object.values(item.categories).length !== 0 && ( 
+      <Category dangerouslySetInnerHTML={{ __html: getNameById(Number(item.categories), categoryState) }}/>
+      )}
     </MainArticle>
   );
 };
@@ -80,7 +105,9 @@ const breakpoints = [576, 1002, 1112, 1300]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const MainArticle = styled.div`
-width: 475px;
+display: flex;
+flex-direction: column;
+width: 497px;
 padding: 25px;
 border-radius: 25px;
 margin: 25px;
@@ -117,8 +144,32 @@ const Excerpt = styled.div`
 
 const Category = styled.div`
   padding: 10px;
+  margin-top: 10px;
   border-radius: 25px;
   background: #F5F5F6;
   align-self: flex-end;
-  width: fit-content;
+`;
+
+const Demo = styled.div`
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 25px;
+  color: white;
+  background-color: #507A95;
+  &:hover {
+    color: #F9AA8F;
+    font-weight: 500;
+  }
+`;
+
+const ReadMore = styled.div`
+  color: #507A95;
+  align-self: flex-start;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex; 
+  flex-direction: row;
+  align-items: baseline;
+  align-self: flex-end;
 `;
