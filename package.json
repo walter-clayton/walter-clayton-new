@@ -21,11 +21,13 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@frontity/components": "^1.8.2",
     "@frontity/core": "^1.16.0",
     "@frontity/html2react": "^1.7.0",
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/walter_clayton-theme": "./packages/walter_clayton-theme",
     "@frontity/wp-source": "^1.11.7",
+    "@react-pdf/renderer": "^3.1.9",
     "frontity": "^1.17.2",
     "typescript": "^5.0.2"
   },

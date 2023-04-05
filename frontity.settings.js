@@ -4,8 +4,8 @@ const settings = {
     "frontity": {
       "url": "https://test.frontity.org",
       "title": "Walter Clayton Blog",
-      "description": "Walter Clayton's Portfolio and blogging website"
-    }
+      "description": "Walter Clayton's Portfolio and blogging website",
+    },
   },
   "packages": [
     {
@@ -24,19 +24,26 @@ const settings = {
             [
               "About",
               "/about/"
-            ]
+            ],
           ],
           "featured": {
             "showOnList": false,
             "showOnPost": false
           }
         }
-      }
+      },
     },
     {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
+          "data":{
+            "/about/":{
+              isReady: true, 
+              isFetching: false,
+              isAbout: true,
+           },
+          },
           "api": "https://walter-clayton.000webhostapp.com/wp-json",
           "postTypes": [
             {

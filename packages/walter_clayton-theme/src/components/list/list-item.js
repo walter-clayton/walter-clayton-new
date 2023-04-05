@@ -3,7 +3,6 @@ import { css } from '@emotion/react'
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './styles.css'
 
 /**
  * Item Component

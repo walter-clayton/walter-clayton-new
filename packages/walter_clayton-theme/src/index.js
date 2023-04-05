@@ -8,6 +8,13 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 library.add(faSearch, faGithub)
 
+const myHandler = {
+  pattern: "/some-url/",
+  func: ({ state }) => {
+    // Add handler logic here...
+  }
+}
+
 const walterClaytonTheme = {
   name: "@frontity/walter_clayton-theme",
   roots: {

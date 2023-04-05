@@ -50,7 +50,6 @@ const LogoDesktop = styled.nav`
 const NavContainer = styled.nav`
   list-style: none;
   display: flex;
-  height: 70px;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
