@@ -3,10 +3,13 @@ import Switch from "@frontity/components/switch";
 import Header from "./header";
 import List from "./list";
 import Post from "./post";
+import Page from "./page";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
 import Jumbotron from "./jumbotron";
+import About from "./about";
+import Footer from "./footer";
 
 /**
  * Theme is the root React component of our theme. The one we will export
@@ -19,6 +22,8 @@ import Jumbotron from "./jumbotron";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
+  const isHomePage = state.router.link === '/';
+  const isPortfolioPage = state.router.link === '/portfolio/';
 
   return (
     <>
@@ -41,15 +46,17 @@ const Theme = ({ state }) => {
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
       <Main>
-        <Jumbotron />
-        <MainChild>
+        {isHomePage || isPortfolioPage ? <Jumbotron /> : null}
             <Switch>
-              <Loading when={data.isFetching} />
-              <List when={data.isArchive} />
-              <Post when={data.isPostType} />
-              <PageError when={data.isError} />
+                <Loading when={data.isFetching} />
+                <List when={data.isArchive} />
+                <Page when={data.IsPage} />
+                <Post when={data.isPost} />
+                <Post when={data.isPostType} />
+                <About when={data.isAbout} />
+                <PageError when={data.isError} />
             </Switch>
-        </MainChild>
+            <Footer></Footer>
       </Main>
     </>
   );
@@ -86,14 +93,4 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-const MainChild = styled.div`
-  display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-  margin: auto;
-  width: 90%;
-  ${mq[2]} {
-    width: 100%;
-  }
 `;
