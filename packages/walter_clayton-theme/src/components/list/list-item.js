@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
+import {useEffect, useRef} from "react";
 /**
  * Item Component
  *
@@ -17,6 +17,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Item = ({ state, item }) => {
   const categoryState = state.source.category;
   const date = new Date(item.date);
+  const itemRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    }, { threshold: 0.5 }); // Trigger the callback when 50% of the item is visible
+
+    observer.observe(itemRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   function getNameById(number, obj) {
     if (obj.id === number) {
@@ -34,7 +51,7 @@ const Item = ({ state, item }) => {
   }
 
   return (
-    <MainArticle>
+    <MainArticle ref={itemRef} className="card">
       <article 
       css={css`
       display: flex; 
@@ -120,6 +137,14 @@ ${mq[2]} {
 }
 ${mq[1]} {
   width: auto;
+}
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+
+&.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 `;
 
