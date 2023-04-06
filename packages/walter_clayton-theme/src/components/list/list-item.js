@@ -106,7 +106,7 @@ const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 const MainArticle = styled.div`
 display: flex;
 flex-direction: column;
-width: 497px;
+width: 500px;
 padding: 25px;
 border-radius: 25px;
 margin: 25px;
