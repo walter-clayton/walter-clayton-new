@@ -6,6 +6,7 @@ const List = ({ state }) => {
   // Get the data of the current list.
   const data = state.source.get(state.router.link);
 
+
   return (
     <Container>
       {/* If the list is a taxonomy, we render a title. */}
@@ -52,7 +53,7 @@ const Container = styled.section`
     width: 100%;
     flex-direction: column;
     margin: auto;
-}
+  }
 `;
 
 const Header = styled.h3`
