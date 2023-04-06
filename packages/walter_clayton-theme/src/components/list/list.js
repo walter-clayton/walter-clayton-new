@@ -41,14 +41,15 @@ const breakpoints = [576, 768, 992, 1200]
 const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
 
 const Container = styled.section`
-  width: 100%;
+  width: 95%;
   max-width: 1200px;
   margin: auto;
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   ${mq[2]} {
+    width: 100%;
     flex-direction: column;
     margin: auto;
 }
