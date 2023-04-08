@@ -3,7 +3,7 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
-
+import dayjs from "dayjs"
 /**
  * The Post component that Mars uses to render any kind of "post type", like
  * posts, pages, attachments, etc.
@@ -28,11 +28,9 @@ const Post = ({ state, actions, libraries }) => {
   const data = state.source.get(state.router.link);
   // Get the data of the post.
   const post = state.source[data.type][data.id];
-  // Get the data of the author.
-  const author = state.source.author[post.author];
   // Get a human readable date.
   const date = new Date(post.date);
-
+  const formattedDate = dayjs(post.date).format("DD MMMM YYYY")
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
@@ -49,76 +47,89 @@ const Post = ({ state, actions, libraries }) => {
   // Load the post, but only if the data is ready.
   return data.isReady ? (
     <Container>
-      <div>
+      <ChildContainer>
         <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
 
         {/* Hide author and date on pages */}
         {!data.isPage && (
-          <div>
-            {author && (
-              <StyledLink link={author.link}>
-                <Author>
-                  By <b>{author.name}</b>
-                </Author>
-              </StyledLink>
-            )}
+          <SubTitle>
             <DateWrapper>
               {" "}
-              on <b>{date.toDateString()}</b>
+              {formattedDate}
             </DateWrapper>
-          </div>
+          </SubTitle>
         )}
-      </div>
+        {/* Look at the settings to see if we should include the featured image */}
+        {state.theme.featured.showOnPost && (
+          <FeaturedMedia id={post.featured_media} />
+        )}
 
-      {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
-        <FeaturedMedia id={post.featured_media} />
-      )}
-
-      {data.isAttachment ? (
-        // If the post is an attachment, just render the description property,
-        // which already contains the thumbnail.
-        <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
-      ) : (
-        // Render the content using the Html2React component so the HTML is
-        // processed by the processors we included in the
-        // libraries.html2react.processors array.
-        <Content>
-          <Html2React html={post.content.rendered} />
-        </Content>
-      )}
+        {data.isAttachment ? (
+          // If the post is an attachment, just render the description property,
+          // which already contains the thumbnail.
+          <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
+        ) : (
+          // Render the content using the Html2React component so the HTML is
+          // processed by the processors we included in the
+          // libraries.html2react.processors array.
+          <Content>
+            <Html2React html={post.content.rendered} />
+          </Content>
+        )}
+      </ChildContainer>
     </Container>
   ) : null;
 };
 
 export default connect(Post);
 
-const Container = styled.div`
-  margin: 0;
-  display: flex;
-`;
+const breakpoints = [576, 768, 992, 1200]
 
+const mq = breakpoints.map(bp => `@media (max-width: ${bp}px)`)
+
+const Container = styled.section`
+background-color: white;
+border-radius: 5px;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column
+  justify-content: center;
+  flex-wrap: wrap;
+  ${mq[2]} {
+    width: 100%;
+    flex-direction: column;
+    margin: auto;
+  }
+`;
+const ChildContainer = styled.section`
+padding: 25px;
+`;
 const Title = styled.h1`
+  font-size: 32px;
+  line-height: 1.5;
   margin: 0;
   margin-top: 24px;
   margin-bottom: 8px;
   color: rgba(12, 17, 43);
 `;
-
-const StyledLink = styled(Link)`
-  padding: 15px 0;
-`;
-
-const Author = styled.p`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-  display: inline;
+const SubTitle = styled.p`
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 0;
+  margin-top: 18px;
+  color: rgba(117, 117, 117, 1);
 `;
 
 const DateWrapper = styled.p`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-  display: inline;
+font-size: 22px;
+line-height: 1.3;
+font-weight: 400;
+margin: 0;
+margin-top: 18px;
+color: rgba(117, 117, 117, 1);
 `;
 
 /**
@@ -133,10 +144,11 @@ const Content = styled.div`
     max-width: 100%;
   }
 
-  p {
-    line-height: 1.6em;
+  ${mq[2]} {
+    p {
+      font-size: 18px;
+    }
   }
-
   img {
     width: 100%;
     object-fit: cover;

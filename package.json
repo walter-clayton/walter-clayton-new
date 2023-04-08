@@ -28,6 +28,7 @@
     "@frontity/walter_clayton-theme": "./packages/walter_clayton-theme",
     "@frontity/wp-source": "^1.11.7",
     "@react-pdf/renderer": "^3.1.9",
+    "dayjs": "^1.11.7",
     "frontity": "^1.17.2",
     "typescript": "^5.0.2"
   },
