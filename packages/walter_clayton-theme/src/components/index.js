@@ -47,16 +47,16 @@ const Theme = ({ state }) => {
       on the type of URL we are in. */}
       <Main>
         {isHomePage || isPortfolioPage ? <Jumbotron /> : null}
-            <Switch>
-                <Loading when={data.isFetching} />
-                <List when={data.isArchive} />
-                <Page when={data.IsPage} />
-                <Post when={data.isPost} />
-                <Post when={data.isPostType} />
-                <About when={data.isAbout} />
-                <PageError when={data.isError} />
-            </Switch>
-            <Footer></Footer>
+          <Switch>
+              <Loading when={data.isFetching} />
+              <List when={data.isArchive} />
+              <Page when={data.IsPage} />
+              <Post when={data.isPost} />
+              <Post when={data.isPostType} />
+              <About when={data.isAbout} />
+              <PageError when={data.isError} />
+          </Switch>
+        <Footer></Footer>
       </Main>
     </>
   );
