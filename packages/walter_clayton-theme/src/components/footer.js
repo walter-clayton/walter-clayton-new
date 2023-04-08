@@ -35,7 +35,7 @@ const FooterContainer = styled.footer`
     margin: auto;
     color: #333;
 `
-const IconContainer = styled.footer`
+const IconContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     width: 40%;

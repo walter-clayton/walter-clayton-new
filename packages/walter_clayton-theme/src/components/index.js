@@ -74,6 +74,7 @@ const globalStyles = css`
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color:  #E7E7E7;
+    min-height: 100%;
   }
   a,
   a:visited {
