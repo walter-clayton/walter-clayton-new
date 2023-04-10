@@ -1,10 +1,14 @@
 import { styled, css } from "frontity";
 import React, { useState, useEffect, useRef } from "react";
 import profileImage from "../../../../static/images/profile.png";
+// import myPDF from "../../../../static/documents/walter.pdf";
 import inspirationImage from "../../../../static/images/brancusi.png";
 import Review from "../components/review";
 import data from "../../../../static/data/reviews.json";
+import Link from "./link";
+import { saveAs } from 'file-saver';
 
+// console.log(myPDF)
 const About = () => {
   const sectionOneRef = useRef(null); // Define sectionOneRef here
   const sectionTwoRef = useRef(null); // Define sectionTwoRef here
@@ -14,6 +18,7 @@ const About = () => {
   const [index, setIndex] = useState(0);
   const [reviewIndex, setReviewIndex] = useState(0);
   const review = reviews[index];
+
 
   const handlePrev = () => {
     setIndex(index - 1 < 0 ? reviews.length - 1 : index - 1);
@@ -76,14 +81,59 @@ const About = () => {
   }, []);
 
 
+const onButtonClick = () => {
+  // using JavaScript method to get PDF file
+  fetch('../../../../static/documents/walter.pdf')
+    .then(response => response.blob())
+    .then(blob => {
+      // Creating new object of PDF file
+      const fileURL = window.URL.createObjectURL(blob);
+      // Setting various property values
+      let alink = document.createElement('a');
+      alink.href = fileURL;
+      alink.download = '../../../../static/documents/walter.pdf';
+      alink.click();
+    })
+    .catch(error => {
+      console.error('Error occurred while fetching PDF file:', error);
+    });
+};
+
+const onWindowClick = () => {
+  window.open('../../../../static/documents/walter.pdf', "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+}
+
+const onBlobClick = async () => {
+  const url = "http://localhost:3004/static/documents/walter.pdf";
+  const res = await fetch(url);
+  const blob = await res.blob();
+  saveAs(blob, 'myfile.pdf');
+}
+
   return (
     <AboutMain>
       <SectionOne>
         <ContainerParent ref={sectionOneRef} isVisible={isSectionOneVisible}>
             <OrderOne>
               <h1>Walter Clayton</h1>
-              <p>Turning abstract ideas into clean and simple solutions.</p>   
-            </OrderOne>
+              <p>Turning abstract ideas into clean and simple solutions.</p>
+              <hr></hr>
+              <a href="../../../../static/documents/walter.pdf" target="_blank" rel="noopener noreferrer" download="myCV.pdf">Download PDF</a>
+              <hr></hr>
+              <button onClick={onButtonClick}>
+                Click me Event
+              </button>
+              <hr></hr>
+              <button onClick={onWindowClick}>
+                Open Window me Event
+              </button>
+              <hr></hr> 
+              <button onClick={onBlobClick}>
+                Open Blob Event
+              </button>
+              <hr></hr> 
+              <Link to="../../../../static/documents/walter.pdf" target="_blank" download="myCV.pdf">Download</Link>
+              </OrderOne>
             <OrderTwo>
               <Image src={profileImage} alt="walter clayton profile picture" />
             </OrderTwo>

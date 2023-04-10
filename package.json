@@ -27,12 +27,17 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/walter_clayton-theme": "./packages/walter_clayton-theme",
     "@frontity/wp-source": "^1.11.7",
-    "@react-pdf/renderer": "^3.1.9",
+    "canvas": "^2.11.2",
     "dayjs": "^1.11.7",
+    "file-saver": "^2.0.5",
     "frontity": "^1.17.2",
+    "react-pdf": "^6.2.2",
     "typescript": "^5.0.2"
   },
   "devDependencies": {
-    "eslint": "^8.36.0"
+    "eslint": "^8.36.0",
+    "file-loader": "^6.2.0",
+    "node-loader": "^2.0.0",
+    "pdf-loader": "^1.0.2"
   }
 }

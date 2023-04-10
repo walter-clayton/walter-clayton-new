@@ -64,13 +64,34 @@ const settings = {
               endpoint: "project_soft_skills",
               postTypeEndpoint: "project"
             }
-          ]
+          ],
+          // Add the `beforeSSR` property to enable static file serving
+          beforeSSR: async ({ state, actions }) => {
+            await actions.source.fetch("/static/documents/walter.pdf");
+          },
         }
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
-  ]
+    "@frontity/html2react",
+    {
+      "name": "pdf-loader",
+      "state": {
+        "pdf-loader": {
+          "test": /\.(pdf)$/i,
+          "use": [
+            {
+              "loader": "file-loader",
+              "options": {
+                "name": "[name].[ext]",
+                "outputPath": "pdfs/",
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
 };
 
 export default settings;
