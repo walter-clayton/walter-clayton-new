@@ -2,8 +2,18 @@ import { styled, css } from "frontity";
 import React, { useState, useEffect, useRef } from "react";
 import profileImage from "../../../../static/images/profile.png";
 import inspirationImage from "../../../../static/images/brancusi.png";
+import peterWilding from "../../../../static/images/peter-wilding.jpeg";
+import younesElmiri from "../../../../static/images/younes-elmiri.jpeg";
+import virgileBarbieux from "../../../../static/images/virgile-barbieux.jpeg";
+import jeanBernard from "../../../../static/images/jean-bernard-tanquery.jpeg";
+import christinaImage from "../../../../static/images/christina.jpeg";
+import julietCarter from "../../../../static/images/juliet-carter.jpeg";
+import beaPava from "../../../../static/images/bea-pava.jpeg";
+import claudiuCornea from "../../../../static/images/claudiu-cornea.jpeg";
 import Review from "../components/review";
 import data from "../../../../static/data/reviews.json";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const About = () => {
   const sectionOneRef = useRef(null); // Define sectionOneRef here
@@ -81,8 +91,8 @@ const About = () => {
       <SectionOne>
         <ContainerParent ref={sectionOneRef} isVisible={isSectionOneVisible}>
             <OrderOne>
-              <h1>Walter Clayton</h1>
-              <p>Turning abstract ideas into clean and simple solutions.</p>   
+              <Title>Walter Clayton</Title>
+              <Subtitle>Turning abstract ideas into clean and simple solutions.</Subtitle>   
             </OrderOne>
             <OrderTwo>
               <Image src={profileImage} alt="walter clayton profile picture" />
@@ -99,19 +109,19 @@ const About = () => {
             <Image src={inspirationImage} alt="Brancusi" />
           </OrderOne>
           <OrderOne>
-            <h4
+            <Quote
             css={css`
             color: white;
             }`
             }>
-            “Simplicity is complexity resolved”</h4>
+            “Simplicity is complexity resolved”</Quote>
             <hr></hr>
-            <p
+            <Author
             css={css`
             color: white;
             }`
             }>
-            Constantin Brancusi</p>
+            Constantin Brancusi</Author>
           </OrderOne>
         </ContainerParent>
       </SectionTwo>
@@ -122,20 +132,19 @@ const About = () => {
         </SectionTwoSvg>
         <SectionThree>
           <ContainerParent ref={sectionThreeRef} isVisible={isSectionThreeVisible}>
-            <ContainerChild>
+            <ContainerParentReview>
+                <button type="button" onClick={handlePrev} css={css`text-decoration: none; border: none; background: none;}`}>
+                <FontAwesomeIcon icon={faChevronLeft} size="5x" css={css`color: #507A95;:hover{color: #FECBB8;}`}/>
+                </button>
               <ContainerReview>
-                <h4>Reviews</h4>
                 <Review key={`review-${reviewIndex}`} {...review} reviewIndex={reviewIndex} index={index}></Review>
-                <div>
-                  <button type="button" onClick={handlePrev}>
-                      PREV
-                  </button>
-                  <button type="button" onClick={handleNext}>
-                      NEXT
-                  </button>
-                </div>  
+                <ButtonContainer>
+                </ButtonContainer>  
               </ContainerReview>
-            </ContainerChild>
+                  <button type="button" onClick={handleNext} css={css`text-decoration: none; border: none; background: none;}`}>
+                  <FontAwesomeIcon icon={faChevronRight} size="5x" css={css`color: #507A95;:hover{color: #FECBB8;}`}/>
+                  </button>
+            </ContainerParentReview>
           </ContainerParent>
         </SectionThree>
         <SectionThreeSvg preserveAspectRatio="xMidYMin slice"
@@ -158,53 +167,52 @@ const AboutMain = styled.div`
 `;
 const SectionOne = styled.div`
   background-color: #FECBB8;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   ${mq[2]} {
-    height: 70vh;
+    height: 100vh;
   }
 `;
 const SectionTwo = styled.div`
   margin-top: -25px;
   background-color: #507A95;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   ${mq[2]} {
-    height: 70vh;
+    height: 100vh;
   }
 `;
 const SectionThree = styled.div`
   margin-top: -25px;
   background-color: white;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   ${mq[2]} {
-    height: 70vh;
+    height: 100vh;
     text-align: center;  
   }
 `;
 const ContainerParent = styled.div`
   margin-top: 10px;
-  max-width: 850px;
   margin: auto;
   display: flex;
   flex-direction: row;
-  ${mq[1]} {
+  ${mq[2]} {
     flex-direction: column;
   }
   opacity: ${({ isVisible }) => (isVisible ? "1" : "0")};
   transition: opacity 0.5s ease-in-out;
 `;
-const ContainerChild = styled.div`
+const ContainerParentReview = styled.div`
+  max-width: 1200px;
   align-items: center;
-  display flex;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   margin: auto;
   width: 90%;
   padding: 30px 0 30px 0;
   ${mq[2]} {
-    width: 80%;
   }
 `;
 const SectionOneSvg = styled.svg`
@@ -228,7 +236,10 @@ const Image = styled.img`
 `;
 
 const ContainerReview = styled.div`
-  padding: 25px;
+  padding: 50px;
+  ${mq[2]} {
+    padding: 0px;
+  }
 `;
 
 const OrderOne = styled.div`
@@ -236,9 +247,9 @@ align-items: center;
 display flex;
 flex-direction: column;
 margin: auto;
-width: 90%;
+width: 100%;
 padding: 30px 0 30px 0;
-${mq[1]} {
+${mq[2]} {
   width: 80%;
   text-align: center;
 }
@@ -250,9 +261,34 @@ flex-direction: column;
 margin: auto;
 width: 90%;
 padding: 30px 0 30px 0;
-${mq[1]} {
+${mq[2]} {
   width: 80%;
   order: -1;
   text-align: center;
+}
+`;
+const ButtonContainer = styled.div`
+text-align: center; 
+`;
+
+const Title = styled.p`
+font-size: 32px;
+line-height: 1.5;
+font-weight: 800;
+}
+`;
+const Subtitle = styled.p`
+font-size: 22px;
+line-height: 1.5;
+}
+`;
+const Quote = styled.p`
+font-size: 22px;
+line-height: 1.5;
+}
+`;
+const Author = styled.p`
+font-size: 20px;
+line-height: 1.5;
 }
 `;
