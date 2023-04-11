@@ -10,6 +10,7 @@ import PageError from "./page-error";
 import Jumbotron from "./jumbotron";
 import About from "./about";
 import Footer from "./footer";
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 /**
  * Theme is the root React component of our theme. The one we will export
