@@ -1,3 +1,5 @@
+const LodashWebpackPlugin = require("lodash-webpack-plugin");
+
 const settings = {
   "name": "my-website",
   "state": {
@@ -69,8 +71,15 @@ const settings = {
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
-  ]
+    "@frontity/html2react",
+  ],
+  "webpack": {
+    "mode": "development",
+    "devtool": "eval",
+    "plugins": [
+      new LodashWebpackPlugin()
+    ]
+  }
 };
 
 export default settings;
