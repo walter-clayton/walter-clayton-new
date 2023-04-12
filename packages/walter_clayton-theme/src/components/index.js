@@ -10,6 +10,7 @@ import PageError from "./page-error";
 import Jumbotron from "./jumbotron";
 import About from "./about";
 import Footer from "./footer";
+import Search from "./search";
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 /**
@@ -51,6 +52,7 @@ const Theme = ({ state }) => {
           <Switch>
               <Loading when={data.isFetching} />
               <List when={data.isArchive} />
+              <Search state={state} />
               <Page when={data.IsPage} />
               <Post when={data.isPost} />
               <Post when={data.isPostType} />
