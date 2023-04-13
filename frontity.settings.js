@@ -4,7 +4,7 @@ const settings = {
   "name": "my-website",
   "state": {
     "frontity": {
-      "url": "https://walter-clayton.000webhostapp.com/wp-json",
+      "url": "https://walter-clayton.000webhostapp.com/",
       "title": "Walter Clayton Blog",
       "description": "Walter Clayton's Portfolio and blogging website",
     },
