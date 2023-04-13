@@ -7,8 +7,8 @@
     "frontity"
   ],
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
+    "node": "16.x",
+    "npm": "6.x"
   },
   "scripts": {
     "dev": "frontity dev",
@@ -28,11 +28,17 @@
     "@frontity/walter_clayton-theme": "./packages/walter_clayton-theme",
     "@frontity/wp-source": "^1.11.7",
     "@react-pdf/renderer": "^3.1.9",
+    "babel-plugin-lodash": "^3.3.4",
     "dayjs": "^1.11.7",
     "frontity": "^1.17.2",
-    "typescript": "^5.0.2"
+    "lodash-webpack-plugin": "^0.11.6",
+    "typescript": "^5.0.2",
+    "vercel": "^28.18.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
     "eslint": "^8.36.0"
   }
 }

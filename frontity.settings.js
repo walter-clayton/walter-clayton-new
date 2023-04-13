@@ -1,8 +1,10 @@
+const LodashWebpackPlugin = require("lodash-webpack-plugin");
+
 const settings = {
   "name": "my-website",
   "state": {
     "frontity": {
-      "url": "https://test.frontity.org",
+      "url": "https://walter-clayton.000webhostapp.com/",
       "title": "Walter Clayton Blog",
       "description": "Walter Clayton's Portfolio and blogging website",
     },
@@ -69,8 +71,15 @@ const settings = {
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
-  ]
+    "@frontity/html2react",
+  ],
+  "webpack": {
+    "mode": "development",
+    "devtool": "eval",
+    "plugins": [
+      new LodashWebpackPlugin()
+    ]
+  }
 };
 
 export default settings;
