@@ -13,6 +13,9 @@ const settings = {
     {
       "name": "@frontity/walter_clayton-theme",
       "state": {
+        source: {
+          url: "https://walter-clayton.000webhostapp.com/"
+        },
         "theme": {
           "menu": [
             [
