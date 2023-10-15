@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "dev": "frontity dev",
+    "build": "node -v && frontity build && node -v",
+    "serve": "frontity serve"
+  },
   "name": "my-website",
   "version": "1.0.0",
   "private": true,
@@ -7,13 +12,8 @@
     "frontity"
   ],
   "engines": {
-    "node": "16.x",
+    "node": "12.x",
     "npm": "6.x"
-  },
-  "scripts": {
-    "dev": "frontity dev",
-    "build": "node -v && frontity build && node -v",
-    "serve": "frontity serve"
   },
   "prettier": {},
   "dependencies": {
@@ -39,6 +39,12 @@
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
+    "@layer0/cli": "^4.19.8",
+    "@layer0/core": "^4.19.8",
+    "@layer0/devtools": "^4.19.8",
+    "@layer0/frontity": "^4.19.8",
+    "@layer0/prefetch": "^4.19.8",
+    "@layer0/react": "^4.19.8",
     "eslint": "^8.36.0"
   }
 }

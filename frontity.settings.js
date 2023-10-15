@@ -6,13 +6,16 @@ const settings = {
     "frontity": {
       "url": "https://walter-clayton.000webhostapp.com/",
       "title": "Walter Clayton Blog",
-      "description": "Walter Clayton's Portfolio and blogging website",
-    },
+      "description": "Walter Clayton's Portfolio and blogging website"
+    }
   },
   "packages": [
     {
       "name": "@frontity/walter_clayton-theme",
       "state": {
+        "source": {
+          "url": "https://walter-clayton.000webhostapp.com/"
+        },
         "theme": {
           "menu": [
             [
@@ -26,52 +29,52 @@ const settings = {
             [
               "About",
               "/about/"
-            ],
+            ]
           ],
           "featured": {
             "showOnList": false,
             "showOnPost": false
           }
         }
-      },
+      }
     },
     {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "data":{
-            "/about/":{
-              isReady: true, 
-              isFetching: false,
-              isAbout: true,
-           },
-          },
           "api": "https://walter-clayton.000webhostapp.com/wp-json",
           "postTypes": [
             {
-              type: "project",
-              endpoint: "project",
-              archive: "/portfolio",
-              post: "/project/:slug",
+              "type": "project",
+              "endpoint": "project",
+              "archive": "/portfolio",
+              "post": "/project/:slug"
             }
           ],
-          taxonomies: [
+          "taxonomies": [
             {
-              taxonomy: "project_hard_skills",
-              endpoint: "project_hard_skills",
-              postTypeEndpoint: "project"
+              "taxonomy": "project_hard_skills",
+              "endpoint": "project_hard_skills",
+              "postTypeEndpoint": "project"
             },
             {
-              taxonomy: "project_soft_skills",
-              endpoint: "project_soft_skills",
-              postTypeEndpoint: "project"
+              "taxonomy": "project_soft_skills",
+              "endpoint": "project_soft_skills",
+              "postTypeEndpoint": "project"
             }
           ]
+        },
+        "data": {
+          "/about/": {
+            "isReady": true,
+            "isFetching": false,
+            "isAbout": true
+          }
         }
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react",
+    "@frontity/html2react"
   ],
   "webpack": {
     "mode": "development",
