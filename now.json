@@ -1,0 +1,10 @@
+{
+  "alias": "https://mywebsite-chi-seven.vercel.app/",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@frontity/now"
+    }
+  ]
+}
